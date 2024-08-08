@@ -1,0 +1,190 @@
+# 1: a card is drawn at random from a desk of well-shuffled cards. find the probability of is being neither a king nor a spade.
+
+def probability_neither_king_nor_spade():
+    total_cards = 52
+    kings = 4
+    spades = 13
+    king_of_spades = 1
+
+    # Calculate the number of cards that are either a king or a spade
+    kings_or_spades = kings + spades - king_of_spades
+
+    # Calculate the number of cards that are neither a king nor a spade
+    neither_king_nor_spade = total_cards - kings_or_spades
+
+    # Calculate the probability
+    probability = neither_king_nor_spade / total_cards
+
+    return probability
+
+
+
+# 2: Find the sum of the first N natural number
+
+def sum_of_natural_numbers_loop(n):
+    # Initialize sum to 0
+    total_sum = 0
+    # Loop through numbers from 1 to N
+    for i in range(1, n + 1):
+        total_sum += i
+    return total_sum
+
+# Example usage
+N = 10
+sum_loop = sum_of_natural_numbers_loop(N)
+print(f"The sum of the first {N} natural numbers using a loop is: {sum_loop}")
+
+
+# 3:Extracting feilds of a roll nymber using string indexing and slicing
+
+def extract_fields(roll_number):
+    # Extracting the department code (first 2 characters)
+    department_code = roll_number[:2]
+    
+    # Extracting the roll number (next 4 characters)
+    roll_number_field = roll_number[2:6]
+    
+    # Extracting the section code (last 2 characters)
+    section_code = roll_number[6:]
+    
+    return department_code, roll_number_field, section_code
+
+# Example usage
+roll_number = "AB1234CD"
+department, roll_num, section = extract_fields(roll_number)
+
+print(f"Department Code: {department}")
+print(f"Roll Number: {roll_num}")
+print(f"Section Code: {section}")
+
+
+
+# 4:Word shuffle using string manipulation
+
+import random
+
+def shuffle_word(word):
+    # Convert the word to a list of characters
+    char_list = list(word)
+    
+    # Shuffle the list of characters
+    random.shuffle(char_list)
+    
+    # Join the list back into a string
+    shuffled_word = ''.join(char_list)
+    
+    return shuffled_word
+
+# Example usage
+word = input()
+shuffled = shuffle_word(word)
+print(f"Original word: {word}")
+print(f"Shuffled word: {shuffled}")
+
+
+# 5: Write a program to find out if the two blood groups match
+
+def is_compatible(blood1, blood2):
+    # Extract ABO type and Rh factor
+    def extract_details(blood):
+        if len(blood) < 2:
+            raise ValueError("Invalid blood group format")
+        type_ab = blood[0]   # A, B, AB, O
+        rh_factor = blood[1] # + or -
+        return type_ab, rh_factor
+    
+    def is_compatible_abo(type1, type2):
+        compatibility = {
+            'A': ['A', 'O'],
+            'B': ['B', 'O'],
+            'AB': ['A', 'B', 'AB', 'O'],
+            'O': ['O']
+        }
+        return type2 in compatibility.get(type1, [])
+
+    type1, rh1 = extract_details(blood1)
+    type2, rh2 = extract_details(blood2)
+    
+    # Check ABO compatibility
+    abo_compatible = is_compatible_abo(type1, type2)
+    
+    # Check Rh factor compatibility
+    rh_compatible = (rh1 == '+' or rh2 == '+') or (rh1 == '-' and rh2 == '-')
+    
+    return abo_compatible and rh_compatible
+
+# Example usage
+blood1 = input()
+blood2 = input()
+
+if is_compatible(blood1, blood2):
+    print(f"The blood groups {blood1} and {blood2} are compatible.")
+else:
+    print(f"The blood groups {blood1} and {blood2} are not compatible.")
+
+
+# 6: Find the studenty from CS department where the roll number may be in capital or small case latters
+
+def find_cs_students(roll_numbers):
+    cs_students = []
+
+    # Iterate over each roll number
+    for roll_number in roll_numbers:
+        # Convert roll number to uppercase to handle case insensitivity
+        if roll_number.upper().startswith("CS"):
+            cs_students.append(roll_number)
+
+    return cs_students
+
+# Example usage
+roll_numbers = [
+    "cs1234",
+    "CS5678",
+    "it2345",
+    "CS3456",
+    "cs6789",
+    "EE1234"
+]
+
+cs_students = find_cs_students(roll_numbers)
+print("Students from CS department:", cs_students)
+
+
+
+# 7: To read a card as input and output if the card is luck or not
+
+def is_lucky_card(card):
+    # Define lucky card values
+    lucky_values = {'7', '11', '13'}
+    
+    # Map face card characters to values
+    face_card_values = {
+        'J': '11',
+        'Q': '12',
+        'K': '13',
+        'A': '1'
+    }
+    
+    # Convert the card to uppercase to handle case insensitivity
+    card = card.upper()
+    
+    # Check if the card is a face card or numeric card
+    if card in face_card_values:
+        card_value = face_card_values[card]
+    elif card.isdigit() and 1 <= int(card) <= 13:
+        card_value = card
+    else:
+        return "Invalid card value"
+    
+    # Check if the card value is lucky
+    if card_value in lucky_values:
+        return "The card is lucky!"
+    else:
+        return "The card is not lucky."
+
+# Example usage
+card_input = input("Enter the card value (1-13, J, Q, K, A): ")
+result = is_lucky_card(card_input)
+print(result)
+
+
