@@ -1,0 +1,1 @@
+Hello, how are you this function is used for the write in file..
