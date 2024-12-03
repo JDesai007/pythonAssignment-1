@@ -31,7 +31,7 @@ crick_score=""" Schine score 760 and Dravid score 40 and \nVirat score 77 in the
 # findall() it return the list containing all matches patterns
 # f=re.findall(r'[A-Z][a-z]*',crick_score)
 f=re.findall(r'[A-Z][a-z]*',crick_score)
-
+print(f)
 score=re.findall(r'\d{2}',crick_score)
 print(score)
 
@@ -56,7 +56,7 @@ if re.search(r"am",str):
 
 
 
-## Find string Index usinf finditer()
+## Find string Index using finditer()
 
 for i in re.finditer("am",str):
     index=i.span() # span() return the starting and ending index of word whicch match to the regular exprression
@@ -91,7 +91,7 @@ Iam fine
 Thank you."""
 
 print(str4)
-reg=re.compile(r"\n") ## 
+reg=re.compile(r"\n") 
 str4=reg.sub(" ",str4) 
 print(str4)
 
@@ -131,11 +131,19 @@ if re.search(r"\+\d{2}\s\d{10}",phone1):
 
 
 ## Find email id out of long text
-email="abc67@gmail.com and abc@aajfhasffg.com and my12@gmail.com"
+email="abc67@gmail.com and abc@aajfhasffg.com and my12@gmail.com and abx76@gmaul.....c"
 e=re.findall(r"\w+@\w+.\w*",email)
 print(e)
 
 
+text="ToPsy TuRvy"
+w1,w2=text.split()
+print(w1.swapcase(),w2.title().swapcase())
+
+## find URL
+url="https://goggle.com"
+u=re.findall(r"\w+://\w+.\w*",url)
+print(u)
 
 
     
