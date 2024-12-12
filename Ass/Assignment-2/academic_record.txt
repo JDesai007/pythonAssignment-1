@@ -1,0 +1,5 @@
+Mathematics, 3, A
+Physics, 4, B+
+Chemistry, 3, B
+Biology, 2, C+
+Computer Science, 3, A

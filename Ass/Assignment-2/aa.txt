@@ -1,0 +1,35 @@
+
+
+***** Assignment - 9 *****
+
+
+
+create trigger ins_sum before insert on account for each row set @sum=@sum+NEW.amount
+
+
+set @sum=0;
+
+insert into account values(8,140.00),(7,-200.00),(9,500.00);
+
+select @sum AS 'Total amount inserted';
+
+
+***** Assignment - 10 *****
+
+-- create trigger that make sum of amount inserted in table to credit and debit according to amount + or -.
+	
+CREATE TRIGGER ins_transaction BEFORE INSERT on account 
+for EACH ROW precedes ins_sum
+    set 
+    @deposite =@deposite +IF(NEW.amount > 0 ,NEW.amount,0),
+    @withdraw= @withdraw + if(NEW.amount < 0, -New.amount,0);
+
+set @sum=0;
+set @deposite=0;
+set @withdraw=0;
+
+insert into account values(1,10000.00),(2,2000.00),(3,-5000.00);
+select @deposite as "Deposite", @withdraw as "Withdraw", @sum as "Total";
+
+
+
